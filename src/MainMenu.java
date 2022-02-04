@@ -149,13 +149,7 @@ public class MainMenu {
                     for(IRoom room:alternativeRoomList){
                         System.out.println(room);
                     }
-//                    System.out.println("Do you want to book rooms from these recommendations");
-//                    String confirmAlternative = sc.next();
-//                    if (confirmAlternative.equalsIgnoreCase("y")){
-//
-//                    }
                 }
-
                 System.out.println("Currently no rooms available");
                 showOptions();
             }

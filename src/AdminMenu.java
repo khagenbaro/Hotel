@@ -69,7 +69,7 @@ public class AdminMenu {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter room number");
         String roomNumber = sc.nextLine();
-        //todo  checking for room number already exists or not
+        // checking for room number already exists or not
         if(HotelResource.checkRoomNumber(roomNumber)){
             System.out.println("This room number already exists ");
         }
@@ -96,6 +96,23 @@ public class AdminMenu {
         roomList.add(room);
         AdminResource resource = new AdminResource();
         resource.addRoom(roomList);
+        System.out.println("Do you want to add another room to the list ?"+"Y/N");
+        String doRoomAdd =  sc.next();
+        if(doRoomAdd.equalsIgnoreCase("y")){
+            addRoom();
+        }
+        else if(doRoomAdd.equalsIgnoreCase("n"))
+        {
+            showOptions();
+        }
+        else
+        {
+            System.out.println("please enter a valid input ");
+            System.out.println("Going back to admin menu");
+            showOptions();
+        }
+
+
     }
 
 }

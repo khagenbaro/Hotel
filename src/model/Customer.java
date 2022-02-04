@@ -8,7 +8,6 @@ public class Customer {
      private String firstName, lastName, email;
 
     public Customer(String firstName, String lastName, String email){
-        //TODO
         this.isValidEmail(email);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,10 +26,10 @@ public class Customer {
     }
     @Override
     public String toString() {
-        return "Customer Details" +
-                "firstName='" + this.firstName + '\'' +
-                ", lastName='" + this.lastName + '\'' +
-                ", email='" + this.email + '\'';
+        return "Customer Details: " +
+                "firstName='" + this.firstName  +
+                ", lastName='" + this.lastName  +
+                ", email='" + this.email ;
     }
 
 }
