@@ -96,7 +96,7 @@ public class AdminMenu {
         roomList.add(room);
         AdminResource resource = new AdminResource();
         resource.addRoom(roomList);
-        System.out.println("Do you want to add another room to the list ?"+"Y/N");
+        System.out.println("Do you want to add another room to the list ? "+" Y/N ");
         String doRoomAdd =  sc.next();
         if(doRoomAdd.equalsIgnoreCase("y")){
             addRoom();
