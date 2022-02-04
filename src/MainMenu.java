@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -85,13 +86,8 @@ public class MainMenu {
         System.out.println("Enter CheckOut Date mm/dd/yyyy example 02/01/2020");
         String outDate = sc.next();
 
-        Date checkOutDate = null;
-        try {
-            checkOutDate = simpleDateFormat.parse(outDate);
-        } catch (ParseException e) {
-            System.out.println("Please enter a valid input ");
-            findAndReserveARoom();
-        }
+        Date checkOutDate ;
+        checkOutDate = simpleDateFormat.parse(outDate);
         if (checkInDate != null & checkOutDate != null) {
             Collection<IRoom> availableRooms = resource.findARoom(checkInDate, checkOutDate);
             if (!availableRooms.isEmpty()) {
@@ -120,6 +116,18 @@ public class MainMenu {
                     showOptions();
                 }
             } else {
+
+                List<IRoom> alternativeRoomList = resource.checkForAlternativeRooms(checkInDate, checkOutDate);
+                if(alternativeRoomList.isEmpty()){
+                    System.out.println("No rooms available for bookings");
+                    showOptions();
+                }else{
+                    System.out.println("These are the some recomended rooms you can book");
+                    for(IRoom room:alternativeRoomList){
+                        System.out.println(room);
+                    }
+                }
+
                 System.out.println("Currently no rooms available");
                 showOptions();
             }

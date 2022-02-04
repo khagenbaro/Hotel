@@ -70,4 +70,15 @@ public class ReservationService {
     public void printAllReservation() {
         System.out.println(reservationList);
     }
+
+    public List<IRoom> checkForAlternativeRooms(Date checkInDate, Date checkOutDate) {
+        return (List<IRoom>) findRooms(recomendedRoomSearch(checkInDate),recomendedRoomSearch(checkOutDate));
+    }
+
+    private Date recomendedRoomSearch(Date recomdedDays) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(recomdedDays);
+        calendar.add(Calendar.DATE,10);
+        return calendar.getTime();
+    }
 }

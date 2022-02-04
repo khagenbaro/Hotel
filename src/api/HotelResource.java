@@ -35,5 +35,9 @@ public class HotelResource {
         return reservationService.findRooms(checkIn, checkOut);
 
     }
+
+    public List<IRoom> checkForAlternativeRooms(Date checkInDate, Date checkOutDate) {
+        return reservationService.checkForAlternativeRooms(checkInDate, checkOutDate);
+    }
 }
 

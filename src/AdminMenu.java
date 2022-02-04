@@ -84,5 +84,5 @@ public class AdminMenu {
         AdminResource resource = new AdminResource();
         resource.addRoom(roomList);
     }
-
+//khagen baro
 }
