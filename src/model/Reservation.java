@@ -41,11 +41,10 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" +
+        return "Reservation details : " +
                 "customer=" + this.customer.toString() +
                 ", room=" + this.room.toString() +
                 ", checkInDate=" + this.checkInDate +
-                ", checkOutDate=" + this.checkOutDate +
-                '}';
+                ", checkOutDate=" + this.checkOutDate;
     }
 }

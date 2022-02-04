@@ -1,4 +1,6 @@
 import api.AdminResource;
+import api.HotelResource;
+import model.FreeRoom;
 import model.IRoom;
 import model.Room;
 import model.RoomType;
@@ -6,6 +8,8 @@ import model.RoomType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import static service.ReservationService.getReservationService;
 
 public class AdminMenu {
     public void showOptions() {
@@ -32,7 +36,7 @@ public class AdminMenu {
                 showOptions();
                 break;
             case 3:
-                //printAllReservation();
+                printAllReservation();
                 showOptions();
                 break;
             case 4:
@@ -44,10 +48,9 @@ public class AdminMenu {
         }
     }
 
-//    private void printAllReservation() {
-//        System.out.println(reservationList);
-//
-//    }
+    private void printAllReservation() {
+        getReservationService().printAllReservation();
+    }
 
     private void viewAllRooms() {
         AdminResource resource = new AdminResource();
@@ -62,27 +65,37 @@ public class AdminMenu {
 
     private void addRoom() {
         List<IRoom> roomList = new ArrayList<>();
-        int addAnotherRoomInput;
-        do {
-            System.out.println("Enter room number");
-            Scanner sc = new Scanner(System.in);
-            String roomNumber = sc.next();
-            System.out.println("Enter room price");
-            Double price = sc.nextDouble();
-            System.out.println("Enter room type: 1 for single bed, 2 for double bed");
-            int roomType = sc.nextInt();
-            System.out.println("Room Added Successfully ");
-
-            //TODO
-            IRoom room = new Room(roomNumber, price, RoomType.SINGLE);
-            roomList.add(room);
-            System.out.println("Do you want to add another Room '1' for Yes '2' for No");
-            addAnotherRoomInput = sc.nextInt();
+        IRoom room;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter room number");
+        String roomNumber = sc.nextLine();
+        //todo  checking for room number already exists or not
+        if(HotelResource.checkRoomNumber(roomNumber)){
+            System.out.println("This room number already exists ");
         }
-        while(addAnotherRoomInput == 1);
 
+        System.out.println("Enter room price");
+        Double price = sc.nextDouble();
+        System.out.println("Enter room type: 1 for single bed, 2 for double bed");
+        String roomTypeInput = sc.next();
+        RoomType roomType = null;
+        if(roomTypeInput.equals("1")){
+            roomType = RoomType.SINGLE;
+        }
+        else if(roomTypeInput.equals("2")){
+            roomType = RoomType.DOUBLE;
+        }
+        if(price==0.0){
+            room = new FreeRoom(roomNumber,roomType);
+        }
+        else
+        {
+            room = new Room(roomNumber,price,roomType);
+        }
+        System.out.println("Room added Successfully !");
+        roomList.add(room);
         AdminResource resource = new AdminResource();
         resource.addRoom(roomList);
     }
-//khagen baro
+
 }

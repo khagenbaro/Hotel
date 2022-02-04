@@ -26,8 +26,7 @@ public class CustomerService {
      * @return
      */
     public Customer getCustomer(String customerEmail) {
-        for (int i = 0; i < customerList.size(); i++) {
-            Customer customer = customerList.get(i);
+        for (Customer customer : customerList) {
             if (customer.getEmail().equals(customerEmail)) {
                 return customer;
             }

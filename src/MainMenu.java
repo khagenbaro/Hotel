@@ -31,7 +31,7 @@ public class MainMenu {
                 showOptions();
                 break;
             case 2:
-                System.out.println('1');
+                seeMyReservations();
                 showOptions();
                 break;
             case 3:
@@ -48,6 +48,20 @@ public class MainMenu {
                 System.out.println("Please provide a valid Input\n");
                 showOptions();
         }
+    }
+
+    private void seeMyReservations() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your email address(format: name@domain.com)");
+        String email = sc.nextLine();
+        List<Reservation> myRservationList = (List<Reservation>) resource.getCustomerReservations(email);
+        if(myRservationList.isEmpty()){
+            System.out.println("No reservation found for : " + email);
+        }else
+            for (Reservation reservation:myRservationList){
+                System.out.println(reservation);
+
+            }
     }
 
 
@@ -78,15 +92,22 @@ public class MainMenu {
         try {
             checkInDate = simpleDateFormat.parse(inDate);
         } catch (ParseException e) {
-            //todo check this
-            System.out.println("Please enter a valid input");
+            System.out.println("Please enter a valid check in date");
             findAndReserveARoom();
         }
 
         System.out.println("Enter CheckOut Date mm/dd/yyyy example 02/01/2020");
         String outDate = sc.next();
+        Date checkOutDate;
+        try {
+            checkOutDate = simpleDateFormat.parse(outDate);
+        } catch (ParseException e) {
+            //todo check this
+            System.out.println("Please enter a valid check out date");
+            findAndReserveARoom();
 
-        Date checkOutDate ;
+        }
+
         checkOutDate = simpleDateFormat.parse(outDate);
         if (checkInDate != null & checkOutDate != null) {
             Collection<IRoom> availableRooms = resource.findARoom(checkInDate, checkOutDate);
@@ -96,7 +117,7 @@ public class MainMenu {
 
                 System.out.println("Do you want to book a room? y/n");
                 String bookRoom = sc.next();
-                if (bookRoom.equals("y")) {
+                if (bookRoom.equalsIgnoreCase("y")) {
                     System.out.println("Do you have an account with us? y/n");
                     String haveAccount = sc.next();
                     if (haveAccount.equals("y")) {
@@ -107,12 +128,14 @@ public class MainMenu {
                             String roomNo = sc.next();
                             IRoom room = resource.getRoom(roomNo);
                             Reservation reservation = resource.bookARoom(email, room, checkInDate, checkOutDate);
+                            System.out.println("Your reservation has been done successfully ");
                             System.out.println(reservation);
+                            showOptions();
                         }
                     } else System.out.println("You do not have an account with us . First Create an account with us!");
                     handleCreateAccount();
 
-                } else if (bookRoom.equals("n")) {
+                } else if (bookRoom.equalsIgnoreCase("n")) {
                     showOptions();
                 }
             } else {
@@ -122,10 +145,15 @@ public class MainMenu {
                     System.out.println("No rooms available for bookings");
                     showOptions();
                 }else{
-                    System.out.println("These are the some recomended rooms you can book");
+                    System.out.println("These are the some recommended rooms you can book");
                     for(IRoom room:alternativeRoomList){
                         System.out.println(room);
                     }
+//                    System.out.println("Do you want to book rooms from these recommendations");
+//                    String confirmAlternative = sc.next();
+//                    if (confirmAlternative.equalsIgnoreCase("y")){
+//
+//                    }
                 }
 
                 System.out.println("Currently no rooms available");
@@ -133,5 +161,6 @@ public class MainMenu {
             }
         }
     }
+
 
 }

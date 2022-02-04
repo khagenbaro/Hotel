@@ -3,7 +3,6 @@ package service;
 import model.Customer;
 import model.IRoom;
 import model.Reservation;
-
 import java.util.*;
 
 public class ReservationService {
@@ -11,7 +10,7 @@ public class ReservationService {
     public static List<IRoom> rooms = new ArrayList<>();
     public static List<Reservation> reservationList = new ArrayList<>();
     public static Map<IRoom, Reservation> roomReservationMap = new HashMap<>();
-
+    static List<IRoom> roomList = new ArrayList<>();
     public ReservationService() {
 
     }
@@ -68,7 +67,11 @@ public class ReservationService {
     }
 
     public void printAllReservation() {
-        System.out.println(reservationList);
+        if(reservationList.isEmpty()){
+            System.out.println("No reservation found");
+        } else {
+            System.out.println(reservationList);
+        }
     }
 
     public List<IRoom> checkForAlternativeRooms(Date checkInDate, Date checkOutDate) {
@@ -81,4 +84,15 @@ public class ReservationService {
         calendar.add(Calendar.DATE,10);
         return calendar.getTime();
     }
+
+    public static boolean checkRoomNumberExistance(String roomNumber) {
+            for(IRoom roomNo: roomList){
+                if(roomNo.getRoomNumber().equals(roomNumber)){
+                    System.out.println("This room number is already exists please enter another number");
+                    return true;
+                }
+            }
+            return false;
+        }
+
 }

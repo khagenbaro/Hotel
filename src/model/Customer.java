@@ -27,11 +27,10 @@ public class Customer {
     }
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Customer Details" +
                 "firstName='" + this.firstName + '\'' +
                 ", lastName='" + this.lastName + '\'' +
-                ", email='" + this.email + '\'' +
-                '}';
+                ", email='" + this.email + '\'';
     }
 
 }

@@ -41,11 +41,10 @@ public class Room implements IRoom {
 
     @Override
     public String toString() {
-        return "Room{" +
+        return "Room Details:" +
                 "roomNumber='" + roomNumber + '\'' +
                 ", price=" + price +
-                ", roomType=" + roomType +
-                '}';
+                ", roomType=" + roomType;
     }
 
     @Override
