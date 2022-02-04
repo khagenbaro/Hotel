@@ -2,11 +2,13 @@ package model;
 
 import java.util.Objects;
 
-/** Declaring Room Method and declaring necessary variables */
+/**
+ * Declaring Room Method and declaring necessary variables
+ */
 public class Room implements IRoom {
-    String roomNumber;
-    Double price;
-    RoomType roomType;
+    private String roomNumber;
+    private Double price;
+    private RoomType roomType;
 
     public Room(String roomNumber, Double price, RoomType roomType) {
         this.roomNumber = roomNumber;
@@ -42,7 +44,7 @@ public class Room implements IRoom {
     @Override
     public String toString() {
         return "Room Details: " +
-                "roomNumber=" + roomNumber  +
+                "roomNumber=" + roomNumber +
                 ", price=" + price +
                 ", roomType=" + roomType;
     }
