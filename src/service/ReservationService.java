@@ -3,6 +3,7 @@ package service;
 import model.Customer;
 import model.IRoom;
 import model.Reservation;
+
 import java.util.*;
 
 public class ReservationService {
@@ -11,6 +12,7 @@ public class ReservationService {
     public static List<Reservation> reservationList = new ArrayList<>();
     public static Map<IRoom, Reservation> roomReservationMap = new HashMap<>();
     static List<IRoom> roomList = new ArrayList<>();
+
     public ReservationService() {
 
     }
@@ -58,8 +60,8 @@ public class ReservationService {
 
     public Collection<Reservation> getCustomerReservation(Customer customer) {
         List<Reservation> customerReservationList = new ArrayList<>();
-        for( Reservation reservation : reservationList){
-            if(reservation.getCustomer().equals(customer)){
+        for (Reservation reservation : reservationList) {
+            if (reservation.getCustomer().equals(customer)) {
                 customerReservationList.add(reservation);
             }
         }
@@ -67,7 +69,7 @@ public class ReservationService {
     }
 
     public void printAllReservation() {
-        if(reservationList.isEmpty()){
+        if (reservationList.isEmpty()) {
             System.out.println("No reservation found");
         } else {
             System.out.println(reservationList);
@@ -75,24 +77,24 @@ public class ReservationService {
     }
 
     public List<IRoom> checkForAlternativeRooms(Date checkInDate, Date checkOutDate) {
-        return (List<IRoom>) findRooms(recomendedRoomSearch(checkInDate),recomendedRoomSearch(checkOutDate));
+        return (List<IRoom>) findRooms(recomendedRoomSearch(checkInDate), recomendedRoomSearch(checkOutDate));
     }
 
     private Date recomendedRoomSearch(Date recomdedDays) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(recomdedDays);
-        calendar.add(Calendar.DATE,10);
+        calendar.add(Calendar.DATE, 10);
         return calendar.getTime();
     }
 
     public static boolean checkRoomNumberExistance(String roomNumber) {
-            for(IRoom roomNo: roomList){
-                if(roomNo.getRoomNumber().equals(roomNumber)){
-                    System.out.println("This room number is already exists please enter another number");
-                    return true;
-                }
+        for (IRoom roomNo : roomList) {
+            if (roomNo.getRoomNumber().equals(roomNumber)) {
+                System.out.println("This room number is already exists please enter another number");
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
 }

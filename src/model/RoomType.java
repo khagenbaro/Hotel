@@ -6,6 +6,7 @@ public enum RoomType {
     DOUBLE(2);
 
     int roomType;
+
     RoomType(int roomType) {
         this.roomType = roomType;
     }

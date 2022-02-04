@@ -19,12 +19,7 @@ public class CustomerService {
         customerList.add(customer);
         System.out.println(customerList);
     }
-
-    /**
-     * takes a email Id of a customer and returns Customer object
-     * @param customerEmail
-     * @return
-     */
+    
     public Customer getCustomer(String customerEmail) {
         for (Customer customer : customerList) {
             if (customer.getEmail().equals(customerEmail)) {

@@ -42,9 +42,13 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation details : " +
-                "customer=" + this.customer.toString() +
-                ", room=" + this.room.toString() +
-                ", checkInDate=" + this.checkInDate +
-                ", checkOutDate=" + this.checkOutDate;
+                this.customer.getFirstName()+
+                " "+this.customer.getLastName()+
+                this.customer.getEmail()+
+                "Booked=" + this.room.getRoomNumber()+
+                "with Price "+ this.room.getRoomPrice()+
+                "Room type is " + this.room.getRoomType()+
+                " his checkInDate is" + this.checkInDate +
+                " and checkOutDate is " + this.checkOutDate;
     }
 }

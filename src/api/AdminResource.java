@@ -1,4 +1,3 @@
-
 package api;
 
 import model.Customer;
@@ -26,6 +25,7 @@ public class AdminResource {
     }
 
     public void displayAllReservations() {
+
 
     }
 

@@ -30,7 +30,7 @@ public class HotelResource {
     }
 
     public Collection<Reservation> getCustomerReservations(String email) {
-        return  reservationService.getCustomerReservation(getCustomer(email));
+        return reservationService.getCustomerReservation(getCustomer(email));
     }
 
     public Collection<IRoom> findARoom(Date checkIn, Date checkOut) {
@@ -41,7 +41,8 @@ public class HotelResource {
     public List<IRoom> checkForAlternativeRooms(Date checkInDate, Date checkOutDate) {
         return reservationService.checkForAlternativeRooms(checkInDate, checkOutDate);
     }
-    public static boolean  checkRoomNumber(String roomNumber) {
+
+    public static boolean checkRoomNumber(String roomNumber) {
         return ReservationService.checkRoomNumberExistance(roomNumber);
     }
 }

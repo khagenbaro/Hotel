@@ -55,13 +55,12 @@ public class MainMenu {
         System.out.println("Please enter your email address(format: name@domain.com)");
         String email = sc.nextLine();
         List<Reservation> myRservationList = (List<Reservation>) resource.getCustomerReservations(email);
-        if(myRservationList.isEmpty()){
+        if (myRservationList.isEmpty()) {
             System.out.println("No reservation found for : " + email);
-        }else
-            for (Reservation reservation:myRservationList){
-                System.out.println(reservation);
+        } else for (Reservation reservation : myRservationList) {
+            System.out.println(reservation);
 
-            }
+        }
     }
 
 
@@ -141,12 +140,12 @@ public class MainMenu {
             } else {
 
                 List<IRoom> alternativeRoomList = resource.checkForAlternativeRooms(checkInDate, checkOutDate);
-                if(alternativeRoomList.isEmpty()){
+                if (alternativeRoomList.isEmpty()) {
                     System.out.println("No rooms available for bookings");
                     showOptions();
-                }else{
+                } else {
                     System.out.println("These are the some recommended rooms you can book");
-                    for(IRoom room:alternativeRoomList){
+                    for (IRoom room : alternativeRoomList) {
                         System.out.println(room);
                     }
                 }
@@ -155,6 +154,5 @@ public class MainMenu {
             }
         }
     }
-
 
 }

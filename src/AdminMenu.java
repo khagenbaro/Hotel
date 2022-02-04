@@ -17,7 +17,7 @@ public class AdminMenu {
         System.out.println("-------------------------------------------");
         System.out.println("1. See all Customers");
         System.out.println("2. See all Rooms");
-        System.out.println("3. See all Reservations");//todo not done
+        System.out.println("3. See all Reservations");
         System.out.println("4. Add a Room");
         System.out.println("5. Back to Main Menu");
         System.out.println("-------------------------------------------");
@@ -70,7 +70,7 @@ public class AdminMenu {
         System.out.println("Enter room number");
         String roomNumber = sc.nextLine();
         // checking for room number already exists or not
-        if(HotelResource.checkRoomNumber(roomNumber)){
+        if (HotelResource.checkRoomNumber(roomNumber)) {
             System.out.println("This room number already exists ");
         }
 
@@ -79,34 +79,27 @@ public class AdminMenu {
         System.out.println("Enter room type: 1 for single bed, 2 for double bed");
         String roomTypeInput = sc.next();
         RoomType roomType = null;
-        if(roomTypeInput.equals("1")){
+        if (roomTypeInput.equals("1")) {
             roomType = RoomType.SINGLE;
-        }
-        else if(roomTypeInput.equals("2")){
+        } else if (roomTypeInput.equals("2")) {
             roomType = RoomType.DOUBLE;
         }
-        if(price==0.0){
-            room = new FreeRoom(roomNumber,roomType);
-        }
-        else
-        {
-            room = new Room(roomNumber,price,roomType);
+        if (price == 0.0) {
+            room = new FreeRoom(roomNumber, roomType);
+        } else {
+            room = new Room(roomNumber, price, roomType);
         }
         System.out.println("Room added Successfully !");
         roomList.add(room);
         AdminResource resource = new AdminResource();
         resource.addRoom(roomList);
-        System.out.println("Do you want to add another room to the list ? "+" Y/N ");
-        String doRoomAdd =  sc.next();
-        if(doRoomAdd.equalsIgnoreCase("y")){
+        System.out.println("Do you want to add another room to the list ? " + " Y/N ");
+        String doRoomAdd = sc.next();
+        if (doRoomAdd.equalsIgnoreCase("y")) {
             addRoom();
-        }
-        else if(doRoomAdd.equalsIgnoreCase("n"))
-        {
+        } else if (doRoomAdd.equalsIgnoreCase("n")) {
             showOptions();
-        }
-        else
-        {
+        } else {
             System.out.println("please enter a valid input ");
             System.out.println("Going back to admin menu");
             showOptions();
