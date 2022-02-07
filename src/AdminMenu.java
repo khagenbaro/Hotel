@@ -1,3 +1,4 @@
+
 import api.AdminResource;
 import api.HotelResource;
 import model.FreeRoom;
@@ -70,9 +71,9 @@ public class AdminMenu {
         System.out.println("Enter room number");
         String roomNumber = sc.nextLine();
         // checking for room number already exists or not
-        if (HotelResource.checkRoomNumber(roomNumber)) {
-            System.out.println("This room number already exists ");
-        }
+//        if (HotelResource.checkRoomNumber(roomNumber)) {
+//            System.out.println("This room number already exists ");
+//        }
 
         System.out.println("Enter room price");
         Double price = sc.nextDouble();
@@ -92,7 +93,7 @@ public class AdminMenu {
         System.out.println("Room added Successfully !");
         roomList.add(room);
         AdminResource resource = new AdminResource();
-        resource.addRoom(roomList);
+        resource.addRoom((roomList));
         System.out.println("Do you want to add another room to the list ? " + " Y/N ");
         String doRoomAdd = sc.next();
         if (doRoomAdd.equalsIgnoreCase("y")) {
@@ -104,8 +105,5 @@ public class AdminMenu {
             System.out.println("Going back to admin menu");
             showOptions();
         }
-
-
     }
-
 }

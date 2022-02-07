@@ -9,8 +9,9 @@ import java.util.*;
 import static service.ReservationService.reservationList;
 
 public class HotelResource {
-    CustomerService customerService = new CustomerService();
-    static ReservationService reservationService = new ReservationService();
+
+    CustomerService customerService = CustomerService.getCustomerService();
+    static ReservationService reservationService = ReservationService.getReservationService();
 
     public Customer getCustomer(String email) {
         return customerService.getCustomer(email);
@@ -42,7 +43,7 @@ public class HotelResource {
         return reservationService.checkForAlternativeRooms(checkInDate, checkOutDate);
     }
 
-    public static boolean checkRoomNumber(String roomNumber) {
+    public boolean checkRoomNumber(String roomNumber) {
         return ReservationService.checkRoomNumberExistance(roomNumber);
     }
 }

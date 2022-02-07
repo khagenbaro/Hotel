@@ -1,13 +1,9 @@
 import api.HotelResource;
 import model.IRoom;
 import model.Reservation;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class MainMenu {
@@ -22,7 +18,7 @@ public class MainMenu {
         System.out.println("4. Admin");
         System.out.println("5. Exit");
         System.out.println("-------------------------------------------");
-        System.out.println("Please select a number for menu option");
+        System.out.println("Please select a number from menu option");
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         switch (option) {
@@ -44,13 +40,18 @@ public class MainMenu {
                 break;
             case 5:
                 break;
+//            case 6:
+//                invalidInput();
+//                break;
             default:
                 System.out.println("Please provide a valid Input\n");
                 showOptions();
+
         }
+
     }
 
-    private void seeMyReservations() {
+    private void seeMyReservations()  {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your email address(format: name@domain.com)");
         String email = sc.nextLine();
@@ -69,7 +70,7 @@ public class MainMenu {
         adminMenu.showOptions();
     }
 
-    void handleCreateAccount() {
+    void handleCreateAccount() throws ParseException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Your First Name");
         String firstName = sc.next();
@@ -82,7 +83,7 @@ public class MainMenu {
         resource.createACustomer(firstName, lastName, email);
     }
 
-    void findAndReserveARoom() throws ParseException {
+    void findAndReserveARoom()  throws ParseException {
         Scanner sc = new Scanner(System.in);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         System.out.println("Enter CheckIn Date mm/dd/yyyy example 02/01/2020");
@@ -154,5 +155,6 @@ public class MainMenu {
             }
         }
     }
+
 
 }

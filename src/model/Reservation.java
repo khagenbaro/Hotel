@@ -12,11 +12,15 @@ public class Reservation {
     IRoom room;
     Date checkInDate, checkOutDate;
 
-    public Reservation(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
+    static Reservation reservation = new Reservation();
+    private Reservation() {
         this.customer = customer;
         this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
+    }
+    public static Reservation getReservation(){
+        return reservation;
     }
 
     public Customer getCustomer() {

@@ -7,14 +7,19 @@ public class Customer {
     String emailRegex = "^(.+)@(.+).(.+)$";
     Pattern pattern = Pattern.compile(emailRegex);
     //Declaring Necessary name variables
-    private String firstName, lastName, email;
-
-    public Customer(String firstName, String lastName, String email) {
+    private String firstName;
+    private  String lastName;
+    private  String email;
+    static  Customer customer = new Customer();
+    private Customer() {
         this.isValidEmail(email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
 
+    public static  Customer getCustomer(){
+        return  customer;
     }
 
     //Checking email is valid or not!!!

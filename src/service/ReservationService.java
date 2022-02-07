@@ -13,7 +13,7 @@ public class ReservationService {
     public static Map<IRoom, Reservation> roomReservationMap = new HashMap<>();
     static List<IRoom> roomList = new ArrayList<>();
 
-    public ReservationService() {
+    private ReservationService() {
 
     }
 
@@ -36,7 +36,7 @@ public class ReservationService {
 
 
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
-        Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
+        Reservation reservation =Reservation.getReservation();
         reservationList.add(reservation);
         roomReservationMap.put(room, reservation);
         return reservation;

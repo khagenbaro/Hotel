@@ -33,4 +33,3 @@ public class AdminResource {
         System.out.println(CustomerService.customerList);
     }
 }
-
