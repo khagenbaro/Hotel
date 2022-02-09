@@ -7,7 +7,9 @@ public class Customer {
     String emailRegex = "^(.+)@(.+).(.+)$";
     Pattern pattern = Pattern.compile(emailRegex);
     //Declaring Necessary name variables
-    private String firstName, lastName, email;
+    private final String firstName;
+    private final  String lastName;
+    private final String email;
 
     public Customer(String firstName, String lastName, String email) {
         this.isValidEmail(email);

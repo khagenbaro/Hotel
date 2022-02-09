@@ -7,13 +7,12 @@ import model.Reservation;
 import java.util.*;
 
 public class ReservationService {
-    static ReservationService reservationService = new ReservationService();
-    public static List<IRoom> rooms = new ArrayList<>();
+    private static ReservationService reservationService = new ReservationService();
     public static List<Reservation> reservationList = new ArrayList<>();
-    public static Map<IRoom, Reservation> roomReservationMap = new HashMap<>();
-    static List<IRoom> roomList = new ArrayList<>();
+    static Map<IRoom, Reservation> roomReservationMap = new HashMap<>();
+    public static List<IRoom> roomList = new ArrayList<>();
 
-    public ReservationService() {
+    private ReservationService() {
 
     }
 
@@ -21,12 +20,26 @@ public class ReservationService {
         return reservationService;
     }
 
+    public static ArrayList<Reservation> getReservtionList() {
+        return (ArrayList<Reservation>) reservationList;
+    }
+
+    public static boolean isRoomNumberExists(String roomNumber) {
+        for (IRoom room : roomList) {
+            if (room.getRoomNumber().contains(roomNumber)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public void addRoom(IRoom room) {
-        rooms.add(room);
+        roomList.add(room);
     }
 
     public IRoom getARoom(String roomNumber) {
-        for (IRoom room : rooms) {
+        for (IRoom room : roomList) {
             if (room.getRoomNumber().equals(roomNumber)) {
                 return room;
             }
@@ -43,7 +56,7 @@ public class ReservationService {
     }
 
     public Collection<IRoom> findRooms(Date checkIn, Date checkOut) {
-        List<IRoom> roomList = ReservationService.rooms;
+        List<IRoom> roomList = ReservationService.roomList;
         List<IRoom> availableRooms = new ArrayList<>();
         for (IRoom room : roomList) {
             if (roomReservationMap.containsKey(room)) {
@@ -83,7 +96,7 @@ public class ReservationService {
     private Date recomendedRoomSearch(Date recomdedDays) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(recomdedDays);
-        calendar.add(Calendar.DATE, 10);
+        calendar.add(Calendar.DATE, 7);
         return calendar.getTime();
     }
 

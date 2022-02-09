@@ -6,9 +6,9 @@ import java.util.Objects;
  * Declaring Room Method and declaring necessary variables
  */
 public class Room implements IRoom {
-    String roomNumber;
-    Double price;
-    RoomType roomType;
+    private String roomNumber;
+    private Double price;
+    private RoomType roomType;
 
     public Room(String roomNumber, Double price, RoomType roomType) {
         this.roomNumber = roomNumber;
