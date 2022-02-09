@@ -49,7 +49,7 @@ public class ReservationService {
 
 
     public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
-        Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
+        Reservation reservation =Reservation.getReservation();
         reservationList.add(reservation);
         roomReservationMap.put(room, reservation);
         return reservation;
